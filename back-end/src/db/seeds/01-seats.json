@@ -1,0 +1,22 @@
+[
+  {
+    "seat_name": "Dining #1",
+    "capacity": 4
+  },
+  {
+    "seat_name": "Dining #2",
+    "capacity": 4
+  },
+  {
+    "seat_name": "Dining #3",
+    "capacity": 6
+  },
+  {
+    "seat_name": "Bar #1",
+    "capacity": 2
+  },
+  {
+    "seat_name": "Bar #2",
+    "capacity": 2
+  }
+]
