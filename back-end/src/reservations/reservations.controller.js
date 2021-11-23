@@ -1,7 +1,16 @@
 const reservationsService = require("./reservations.service.js");
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 const hasProperties = require("../utils/hasProperties");
-const { NotificationCenter } = require("node-notifier");
+
+/**
+
+ ***VALIDATION***
+
+*/
+
+/**
+ * Validation for reservation creation
+ */
 const hasRequiredProperties = hasProperties(
   "first_name",
   "last_name",
@@ -40,7 +49,9 @@ function hasOnlyValidProperties(req, res, next) {
   next();
 }
 
-// if 'status' property is present, validates that it is equal to "booked"
+/**
+ * Validation for status property (equal to "booked")
+ */
 function statusIsBooked(req, res, next) {
   const { status } = req.body.data;
 
@@ -54,11 +65,7 @@ function statusIsBooked(req, res, next) {
 }
 
 /**
- * Validates input for people, reservation_date and reservation_time
- * @param req
- * @param next
- * @returns {Error}
- * a status code and a message with all the fields with invalid input
+ * Validation for inputs (people, reservation_date, and reservation_time)
  */
 function hasValidInputs(req, res, next) {
   const { people, reservation_date, reservation_time } = req.body.data;
@@ -105,7 +112,9 @@ function hasValidInputs(req, res, next) {
   return next();
 }
 
-// checks if the reservation_date is a valid Date
+/**
+ * Validation for reservation_date (is a valid date)
+ */
 function reservationDateIsValid(reservation_date) {
   const timestamp = Date.parse(reservation_date);
   if (isNaN(timestamp) == false) {
@@ -119,14 +128,18 @@ function reservationTimeIsValid(reservation_time) {
   return isTime;
 }
 
-// checks if the reservation_date is a Tuesday
+/**
+ * Validation for specified time constraints (not Tuesday)
+ */
 function reservationDateIsTuesday(reservation_date) {
   const timestamp = Date.parse(`${reservation_date} PST`);
   const date = new Date(timestamp);
   return date.getDay() == 2;
 }
 
-// checks if the reservation is after the current time and date
+/**
+ * Validation for specified time constraints (future date and time)
+ */
 function reservationNotInTheFuture(reservation_date, reservation_time) {
   const reservationDateTimestamp = Date.parse(
     `${reservation_date} ${reservation_time} PST`
@@ -134,20 +147,17 @@ function reservationNotInTheFuture(reservation_date, reservation_time) {
   return reservationDateTimestamp < Date.now();
 }
 
-// checks if the reservation time is NOT between 10:30 and 21:30
+/**
+ * Validation for specified time constraints (between 10:30 and 21:30)
+ */
 function reservationTimeNotAllowed(reservation_time) {
   const reservationTime = Number(reservation_time.replace(":", "").slice(0, 4));
   return reservationTime < 1030 || reservationTime > 2130;
 }
 
-// creates a new reservation adding 'status' key with default value "booked"
-async function create(req, res) {
-  const { data } = req.body;
-  const newReservation = { ...data, status: "booked" };
-  const newData = await reservationsService.create(newReservation);
-  res.status(201).json({ data: newData });
-}
-
+/**
+ * Validation for reservation existence
+ */
 async function reservationExists(req, res, next) {
   const { reservation_id } = req.params;
   const reservation = await reservationsService.read(reservation_id);
@@ -161,21 +171,9 @@ async function reservationExists(req, res, next) {
   });
 }
 
-function read(req, res) {
-  const { reservation: data } = res.locals;
-  res.json({ data });
-}
-
-async function update(req, res) {
-  const updatedreservation = {
-    ...res.locals.reservation,
-    ...req.body.data,
-  };
-  const data = await reservationsService.update(updatedreservation);
-  res.json({ data });
-}
-
-// validates that the status !== "finished"
+/**
+ * Validation for status (not "finished")
+ */
 function statusIsNotFinished(req, res, next) {
   const { status } = res.locals.reservation;
   if (status !== "finished") return next();
@@ -186,6 +184,9 @@ function statusIsNotFinished(req, res, next) {
   });
 }
 
+/**
+ * Validation for status
+ */
 function hasValidStatusRequest(req, res, next) {
   const { status } = req.body.data;
 
@@ -199,6 +200,45 @@ function hasValidStatusRequest(req, res, next) {
   })
 }
 
+/**
+
+ ***HANDLERS***
+
+*/
+
+/**
+ * Create handler for reservation resources
+ */
+async function create(req, res) {
+  const { data } = req.body;
+  const newReservation = { ...data, status: "booked" };
+  const newData = await reservationsService.create(newReservation);
+  res.status(201).json({ data: newData });
+}
+
+/**
+ * Read handler for reservation resources
+ */
+function read(req, res) {
+  const { reservation: data } = res.locals;
+  res.json({ data });
+}
+
+/**
+ * Update handler for reservation resources
+ */
+async function update(req, res) {
+  const updatedreservation = {
+    ...res.locals.reservation,
+    ...req.body.data,
+  };
+  const data = await reservationsService.update(updatedreservation);
+  res.json({ data });
+}
+
+/**
+ * Destroy handler for reservation resources
+ */
 async function destroy(req, res) {
   const { reservation } = res.locals;
   await reservationsService.delete(reservation.reservation_id);
@@ -226,7 +266,6 @@ async function list(req, res) {
 }
 
 module.exports = {
-  list: asyncErrorBoundary(list),
   create: [
     hasOnlyValidProperties,
     hasRequiredProperties,
@@ -242,11 +281,12 @@ module.exports = {
     hasValidInputs,
     asyncErrorBoundary(update),
   ],
-  delete: [asyncErrorBoundary(reservationExists), asyncErrorBoundary(destroy)],
   updateStatus: [
     asyncErrorBoundary(reservationExists),
     statusIsNotFinished,
     hasValidStatusRequest,
     asyncErrorBoundary(update),
   ],
+  delete: [asyncErrorBoundary(reservationExists), asyncErrorBoundary(destroy)],
+  list: asyncErrorBoundary(list),
 };
