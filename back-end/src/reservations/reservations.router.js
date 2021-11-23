@@ -15,13 +15,14 @@ router
     .all(methodNotAllowed);
 
 router
-    .route("/:reservationId")
+    .route("/:reservation_id")
     .get(controller.read)
     .put(controller.update)
+    .delete(controller.delete)
     .all(methodNotAllowed);
 
 router
-    .route("/:reservationId/status")
+    .route("/:reservation_id/status")
     .put(controller.updateStatus)
     .all(methodNotAllowed)
 
