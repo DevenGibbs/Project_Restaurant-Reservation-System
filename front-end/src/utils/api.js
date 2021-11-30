@@ -89,3 +89,22 @@ export async function createReservation(reservation, signal) {
   };
   return await fetchJson(url, options, {});
 }
+/**
+ * Updates the status of an existing reservation
+ * @param updatedReservation 
+ * the reservation to update, which must have a 'status' property
+ * @param signal 
+ * optional AbortController.signal
+ * @returns {Promise<Error>}
+ * a promise that resolves to the updated status of a reservations
+ */
+export async function updateReservationStatus(updatedReservation, signal) {
+  const url = `${API_BASE_URL}/reservations/${updatedReservation.reservation_id}/status`;
+  const options = {
+    method: "PUT",
+    headers,
+    body: JSON.stringify({ data: updatedReservation }),
+    signal,
+  };
+  return await fetchJson(url, options, updatedReservation);
+}
