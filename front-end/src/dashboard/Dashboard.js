@@ -22,17 +22,6 @@ function Dashboard({ date }) {
 
   if (dateQuery) date = dateQuery;
 
-  // useEffect(loadDashboard, [date]);
-
-  // function loadDashboard() {
-  //   const abortController = new AbortController();
-  //   setReservationsError(null);
-  //   listReservations({ date }, abortController.signal)
-  //     .then(setReservations)
-  //     .catch(setReservationsError);
-  //   return () => abortController.abort();
-  // }
-
   // Get request for an array of reservations with date query
   useEffect(() => {
     const abortController = new AbortController();

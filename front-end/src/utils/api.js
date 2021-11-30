@@ -134,3 +134,37 @@ export async function deleteTableReservation(table_id, signal) {
   const options = { method: "DELETE", signal };
   return await fetchJson(url, options);
 }
+
+/**
+ * Retrieves the reservation with the associated 'reservation_id'
+ * @param reservation_id 
+ * the 'reservation_id' property matching the desired reservation
+ * @param signal 
+ * optional AbortController.signal 
+ * @returns {Promise<Error>}
+ * a promise that resolves to a possible error, if the reservation does not exist.
+ */
+export async function readReservation(reservation_id, signal) {
+  const url = `${API_BASE_URL}/reservations/${reservation_id}`;
+  return await fetchJson(url, { signal }, {});
+}
+
+/**
+ * Updates an existing reservation
+ * @param updatedReservation 
+ * the reservation to save, which must have a 'reservation_id' property
+ * @param signal 
+ * optional AbortController.signal
+ * @returns {Promise<Error>}
+ * a promise that resolves to the updated reservation
+ */
+export async function updateReservation(updatedReservation, signal) {
+  const url = `${API_BASE_URL}/reservations/${updatedReservation.reservation_id}`;
+  const options = {
+    method: "PUT",
+    headers,
+    body: JSON.stringify({ data: updatedReservation }),
+    signal,
+  };
+  return await fetchJson(url, options, updatedReservation);
+}
