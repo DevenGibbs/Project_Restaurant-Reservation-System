@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { listReservations } from "../utils/api";
+import { listReservations, listTables } from "../utils/api";
 import ErrorAlert from "../layout/ErrorAlert";
 import ReservationsList from "../reservations/ReservationsList";
 import TodayPrevNextButtons from "./TodayPrevNextButtons";
 import useQuery from "../utils/useQuery";
+import TablesList from "../tables/TablesList";
 
 /**
  * Defines the dashboard page.
@@ -16,6 +17,8 @@ function Dashboard({ date }) {
   const [reservationsError, setReservationsError] = useState(null);
   const query = useQuery();
   const dateQuery = query.get("date");
+  const [tablesError, setTablesError] = useState(null);
+  const [tables, setTables] = useState([]);
 
   if (dateQuery) date = dateQuery;
 
@@ -48,6 +51,21 @@ function Dashboard({ date }) {
   }, [date]);
 
   //Get request for all tables
+  useEffect(() => {
+    const abortController = new AbortController();
+
+    async function loadTables() {
+      setTablesError(null);
+      try {
+        const data = await listTables(abortController.signal);
+        setTables(data);
+      } catch (error) {
+        setTablesError(error);
+      }
+    }
+    loadTables();
+    return () => abortController.abort();
+  }, []);
 
   const unfinishedReservations = reservations.filter(
     (reservation) => reservation.status !== "finished"
@@ -71,6 +89,8 @@ function Dashboard({ date }) {
       <div>
         <h4>List of Tables:</h4>
       </div>
+      <ErrorAlert error={tablesError} />
+      <TablesList tables={tables} />
     </main>
   );
 }

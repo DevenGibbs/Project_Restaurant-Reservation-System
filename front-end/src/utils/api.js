@@ -53,7 +53,7 @@ async function fetchJson(url, options, onCancel) {
 }
 
 /**
- * Retrieves all existing reservation.
+ * Retrieves all existing reservations.
  * @returns {Promise<[reservation]>}
  *  a promise that resolves to a possibly empty array of reservation saved in the database.
  */
@@ -89,6 +89,7 @@ export async function createReservation(reservation, signal) {
   };
   return await fetchJson(url, options, {});
 }
+
 /**
  * Updates the status of an existing reservation
  * @param updatedReservation 
@@ -107,4 +108,29 @@ export async function updateReservationStatus(updatedReservation, signal) {
     signal,
   };
   return await fetchJson(url, options, updatedReservation);
+}
+
+/**
+ * Retrieves all existing tables.
+ * @returns {Promise<[table]>}
+ *  a promise that resolves to a possibly empty array of tables saved in the database.
+ */
+export async function listTables(signal) {
+  const url = new URL(`${API_BASE_URL}/tables`);
+  return await fetchJson(url, { headers, signal }, [])
+}
+
+/**
+ * Deletes the 'reservation_id' preoperty associated with a specific 'table_id'
+ * @param table_id 
+ * the id of the table to update
+ * @param signal 
+ * optional AbortController.signal
+ * @returns {Promise<Error>}
+ * a promise that resolves to an object with a null 'reservation_id'
+ */
+export async function deleteTableReservation(table_id, signal) {
+  const url = `${API_BASE_URL}/tables/${table_id}/seat`;
+  const options = { method: "DELETE", signal };
+  return await fetchJson(url, options);
 }
