@@ -24,7 +24,7 @@ export default function EditReservation() {
                     reservation_id,
                     abortController.signal
                 );
-                const MMDDYYYY = formatDatetoMMDDYYYY(data.reservation_date);
+                const MMDDYYYY = formatDateToMMDDYYYY(data.reservation_date);
                 setFirstName(data.first_name);
                 setLastName(data.last_name);
                 setMobileNumber(data.mobile_number);
@@ -69,13 +69,13 @@ export default function EditReservation() {
         return () => abortController.abort();
     }
 
-    function formatDatetoMMDDYYYY(originalDate) {
+    function formatDateToMMDDYYYY(originalDate) {
         const date = originalDate.replace(/[\s-]/g, "");
         return `${date.substring(4, 6)}${date.substring(6, 8)}${date.substring(0, 4)}`;
     }
 
     function formatDate() {
-        return `${date.substring(4, 8)}${date.substring(0, 2)}${date.substring(2, 4)}`;
+        return `${date.substring(4, 8)}-${date.substring(0, 2)}-${date.substring(2, 4)}`;
     }
 
     function formatTime() {
