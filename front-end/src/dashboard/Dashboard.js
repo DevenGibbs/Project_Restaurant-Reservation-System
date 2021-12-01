@@ -73,13 +73,13 @@ function Dashboard({ date }) {
       <ErrorAlert error={reservationsError} />
       <TodayPrevNextButtons date={date} />
       <div>
-        <h4>Reservations:</h4>
+        <h4><u>Reservations:</u></h4>
       </div>
       <ReservationsList reservations={unfinishedReservations} />
       <br></br>
       <hr></hr>
       <div>
-        <h4>Tables:</h4>
+        <h4><u>Tables:</u></h4>
       </div>
       <ErrorAlert error={tablesError} />
       <TablesList tables={tables} />

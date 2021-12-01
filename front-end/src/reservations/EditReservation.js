@@ -5,7 +5,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { readReservation, updateReservation } from "../utils/api";
 
 export default function EditReservation() {
-    const {reservation_id } = useParams();
+    const { reservation_id } = useParams();
     const history = useHistory();
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");

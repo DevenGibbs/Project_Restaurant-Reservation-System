@@ -5,7 +5,7 @@ export default function TablesList({ tables = [] }) {
         <div className="table-responsive">
             <table className="table table-striped table-hover">
                 <thead>
-                    <tr className="bg-dark text-white">
+                    <tr>
                         <th scope="col" className="align-middle text-center">ID</th>
                         <th scope="col" className="align-middle text-center">Description</th>
                         <th scope="col" className="align-middle text-center">Capacity</th>
