@@ -14,7 +14,7 @@ export default function ReservationView({ reservation }) {
 
     return (
         <tr>
-            <td className="align-middle text-center" scope="row">
+            <td className="align-middle text-center">
                 {reservation_id}
             </td>
             <td className="align-middle text-center">

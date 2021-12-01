@@ -5,7 +5,7 @@ export default function TableView({ table }) {
 
     return (
         <tr>
-            <td className="align-middle text-center" scope="row">{table_id}</td>
+            <td className="align-middle text-center">{table_id}</td>
             <td className="align-middle text-center">{table_name}</td>
             <td className="align-middle text-center">{capacity}</td>
 

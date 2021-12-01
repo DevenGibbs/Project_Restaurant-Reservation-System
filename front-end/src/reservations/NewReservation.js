@@ -1,7 +1,5 @@
 import { useHistory } from "react-router-dom";
 import ReservationForm from "./ReservationForm";
-import formatReservationDate from "../utils/format-reservation-date";
-import formatReservationTime from "../utils/format-reservation-time";
 import { useState } from "react";
 import { createReservation } from "../utils/api";
 
@@ -18,8 +16,8 @@ export default function NewReservation() {
     async function submitClickHandler(event) {
         event.preventDefault();
         const abortController = new AbortController();
-        const formattedDate = formatReservationDate();
-        const formattedTime = formatReservationTime();
+        const formattedDate = formatDate();
+        const formattedTime = formatTime();
         const newReservation = {
             first_name: firstName,
             last_name: lastName,
@@ -37,6 +35,19 @@ export default function NewReservation() {
 
         history.push(`/dashboard?date=${formattedDate}`);
         return () => abortController.abort();
+    }
+
+    function formatDate() {
+        return `${date.substring(4, 8)}-${date.substring(0, 2)}-${date.substring(2, 4)}`;
+    }
+
+    function formatTime() {
+        let cleanTime = time.replace(/[\s:]/g, "").toLowerCase();
+        if (cleanTime.includes("pm")) {
+            cleanTime = Number(cleanTime.slice(0, 4)) + 1200;
+            cleanTime = String(cleanTime);
+        }
+        return `${cleanTime.slice(0, 2)}:${cleanTime.slice(2, 4)}`;
     }
     
     return (
