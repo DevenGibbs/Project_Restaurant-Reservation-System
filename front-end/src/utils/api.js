@@ -168,3 +168,25 @@ export async function updateReservation(updatedReservation, signal) {
   };
   return await fetchJson(url, options, updatedReservation);
 }
+
+/**
+ * Saves a newly created table to the database.
+ * @param table
+ * Does not include 'table_id' property
+ * Must have 'table_name' and 'capacity' properties.
+ * @param signal
+ * optional AbortController.signal
+ * @returns {Promise<table>}
+ * a promise that resolves the saved table.
+ * Adds a 'table_id'  property
+ */
+ export async function createTable(table, signal) {
+  const url = `${API_BASE_URL}/tables`;
+  const options = {
+    method: "POST",
+    headers,
+    body: JSON.stringify({ data: table }),
+    signal,
+  };
+  return await fetchJson(url, options, {});
+}

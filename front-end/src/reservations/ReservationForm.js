@@ -127,7 +127,7 @@ export default function ReservationForm({
                 <button type="submit" className="btn btn-primary mr-2">
                     Submit
                 </button>
-                <button type="button" className="btn btn-secondary" onClick={cancelClickHandler} >
+                <button type="button" className="btn btn-secondary mr-2" onClick={cancelClickHandler} >
                     Cancel
                 </button>
             </div>
