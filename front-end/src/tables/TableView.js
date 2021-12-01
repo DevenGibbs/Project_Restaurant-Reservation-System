@@ -5,15 +5,15 @@ export default function TableView({ table }) {
 
     return (
         <tr>
-            <th scope="row">{table_id}</th>
-            <td>{table_name}</td>
-            <td>{capacity}</td>
+            <td className="align-middle text-center" scope="row">{table_id}</td>
+            <td className="align-middle text-center">{table_name}</td>
+            <td className="align-middle text-center">{capacity}</td>
 
-            <td data-table-id-status={table_id}>
+            <td className="align-middle text-center" data-table-id-status={table_id}>
                 {reservation_id ? "occupied" : "free"}
             </td>
 
-            <td>{reservation_id && <FinishTable table_id={table_id} />}</td>
+            <td className="align-middle text-center">{reservation_id && <FinishTable table_id={table_id} />}</td>
         </tr>
     );
 }

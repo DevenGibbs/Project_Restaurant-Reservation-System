@@ -1,4 +1,5 @@
 import ReservationView from "./ReservationView";
+import "./ReservationsList.css";
 
 export default function ReservationList({ reservations = [] }) {
     return (
@@ -6,15 +7,15 @@ export default function ReservationList({ reservations = [] }) {
             <div className="table-responsive">
                 <table className="table table-striped table-hover">
                     <thead>
-                        <tr className="bg-dark text-white">
-                            <th scope="col">#</th>
-                            <th scope="col">Guest Name</th>
-                            <th scope="col">Mobile Number</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Time</th>
-                            <th scope="col">Party</th>
-                            <th scope="col">Status</th>
-                            <th scope="col"></th>
+                        <tr>
+                            <th scope="col" className="align-middle text-center">ID</th>
+                            <th scope="col" className="align-middle text-center">Guest Name</th>
+                            <th scope="col" className="align-middle text-center">Mobile Number</th>
+                            <th scope="col" className="align-middle text-center">Date</th>
+                            <th scope="col" className="align-middle text-center">Time</th>
+                            <th scope="col" className="align-middle text-center">Party Size</th>
+                            <th scope="col" className="align-middle text-center">Status</th>
+                            <th scope="col" className="align-middle text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>

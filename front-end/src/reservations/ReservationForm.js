@@ -32,8 +32,8 @@ export default function ReservationForm({
         <>
         {error && <ErrorAlert error={error} />}
         <form onSubmit={submitClickHandler}>
-            <div>
-                <label htmlFor="inputFirstName" className="form-label">
+            <div className="form-group">
+                <label htmlFor="inputFirstName" className="form-label font-weight-bold">
                     First Name
                 </label>
                 <input 
@@ -47,8 +47,8 @@ export default function ReservationForm({
                     onChange={firstNameChangeHandler}
                 ></input>
             </div>
-            <div>
-                <label htmlFor="inputLastName" className="form-label">
+            <div className="form-group">
+                <label htmlFor="inputLastName" className="form-label font-weight-bold">
                     Last Name
                 </label>
                 <input 
@@ -62,8 +62,8 @@ export default function ReservationForm({
                     onChange={lastNameChangeHandler}
                 ></input>
             </div>
-            <div>
-                <label htmlFor="inputMobileNumber" className="form-label">
+            <div className="form-group">
+                <label htmlFor="inputMobileNumber" className="form-label font-weight-bold">
                     Mobile Number
                 </label>
                 <input 
@@ -77,8 +77,8 @@ export default function ReservationForm({
                     onChange={mobileNumberChangeHandler}
                 ></input>
             </div>
-            <div>
-                <label htmlFor="inputParty" className="form-label">
+            <div className="form-group">
+                <label htmlFor="inputParty" className="form-label font-weight-bold">
                     Party Size
                 </label>
                 <input 
@@ -92,8 +92,8 @@ export default function ReservationForm({
                     onChange={partyChangeHandler}
                 ></input>
             </div>
-            <div>
-                <label htmlFor="inputDate" className="form-label">
+            <div className="form-group">
+                <label htmlFor="inputDate" className="form-label font-weight-bold">
                     Date
                 </label>
                 <input 
@@ -107,8 +107,8 @@ export default function ReservationForm({
                     onChange={dateChangeHandler}
                 ></input>
             </div>
-            <div>
-                <label htmlFor="inputTime" className="form-label">
+            <div className="form-group">
+                <label htmlFor="inputTime" className="form-label font-weight-bold">
                     Time
                 </label>
                 <input 

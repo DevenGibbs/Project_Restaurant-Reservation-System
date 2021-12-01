@@ -62,7 +62,7 @@ function Dashboard({ date }) {
 
   return (
     <main>
-      <h1>Dashboard</h1>
+      <h1 classname="header">Dashboard</h1>
       <div className="d-md-flex mb-3">
         <h4 className="mb-0">
           {reservations.length <1 && "No "}
@@ -72,11 +72,14 @@ function Dashboard({ date }) {
       </div>
       <ErrorAlert error={reservationsError} />
       <TodayPrevNextButtons date={date} />
+      <div>
+        <h4>Reservations:</h4>
+      </div>
       <ReservationsList reservations={unfinishedReservations} />
       <br></br>
       <hr></hr>
       <div>
-        <h4>List of Tables:</h4>
+        <h4>Tables:</h4>
       </div>
       <ErrorAlert error={tablesError} />
       <TablesList tables={tables} />

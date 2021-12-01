@@ -6,11 +6,11 @@ export default function TablesList({ tables = [] }) {
             <table className="table table-striped table-hover">
                 <thead>
                     <tr className="bg-dark text-white">
-                        <th scope="col">#</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Capacity</th>
-                        <th scope="col">Availability</th>
-                        <th scope="col">Action</th>
+                        <th scope="col" className="align-middle text-center">ID</th>
+                        <th scope="col" className="align-middle text-center">Description</th>
+                        <th scope="col" className="align-middle text-center">Capacity</th>
+                        <th scope="col" className="align-middle text-center">Availability</th>
+                        <th scope="col" className="align-middle text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>

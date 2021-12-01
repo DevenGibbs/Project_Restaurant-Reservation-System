@@ -1,0 +1,10 @@
+.dark-blue-button {
+    background-color: #1D3557;
+    color: white;
+    font-size: larger;
+    font-weight: 600;
+}
+
+.dark-blue-button:hover {
+    color: #A8DADC;
+}
