@@ -69,6 +69,20 @@ export async function listReservations(params, signal) {
 }
 
 /**
+ * Retrieves the reservation with the associated 'reservation_id'
+ * @param reservation_id 
+ * the 'reservation_id' property matching the desired reservation
+ * @param signal 
+ * optional AbortController.signal 
+ * @returns {Promise<Error>}
+ * a promise that resolves to a possible error, if the reservation does not exist.
+ */
+ export async function readReservation(reservation_id, signal) {
+  const url = `${API_BASE_URL}/reservations/${reservation_id}`;
+  return await fetchJson(url, { signal }, {});
+}
+
+/**
  * Saves a newly created reservation to the database.
  * @param reservation
  * Does not include 'reservation_id' property
@@ -136,20 +150,6 @@ export async function deleteTableReservation(table_id, signal) {
 }
 
 /**
- * Retrieves the reservation with the associated 'reservation_id'
- * @param reservation_id 
- * the 'reservation_id' property matching the desired reservation
- * @param signal 
- * optional AbortController.signal 
- * @returns {Promise<Error>}
- * a promise that resolves to a possible error, if the reservation does not exist.
- */
-export async function readReservation(reservation_id, signal) {
-  const url = `${API_BASE_URL}/reservations/${reservation_id}`;
-  return await fetchJson(url, { signal }, {});
-}
-
-/**
  * Updates an existing reservation
  * @param updatedReservation 
  * the reservation to save, which must have a 'reservation_id' property
@@ -189,4 +189,24 @@ export async function updateReservation(updatedReservation, signal) {
     signal,
   };
   return await fetchJson(url, options, {});
+}
+
+/**
+ * Updates an existing table
+ * @param updatedTable 
+ *  the table to save, which must have a 'table_id' property
+ * @param signal 
+ *  optional AbortController.signal
+ * @returns {Promise<Error>}
+ * a pomise that resolves to the updated table and updates reservation 'status' to be "seated"
+ */
+export async function updateTable(updatedTable, signal) {
+  const url = `${API_BASE_URL}/tables/${updatedTable.table_id}/seat`;
+  const options = {
+    method: "PUT",
+    headers,
+    body: JSON.stringify({ data: updatedTable }),
+    signal,
+  };
+  return await fetchJson(url, options, updatedTable);
 }
