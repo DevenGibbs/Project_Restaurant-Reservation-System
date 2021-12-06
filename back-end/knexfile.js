@@ -14,6 +14,7 @@ const {
   DATABASE_URL_PREVIEW = "postgresql://postgres@localhost/postgres",
   DEBUG,
 } = process.env;
+//Using Config Vars for heroku deployment
 
 module.exports = {
   development: {
