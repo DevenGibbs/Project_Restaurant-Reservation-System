@@ -7,6 +7,7 @@ import formatReservationTime from "./format-reservation-date";
 
 const API_BASE_URL =
   process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
+//Attempting to edit deployment by connecting to heroku deployed back-end using config variables on dashbaord
 
 /**
  * Defines the default headers for these functions to work with `json-server`
