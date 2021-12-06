@@ -34,7 +34,7 @@ export default function ReservationForm({
         <form onSubmit={submitClickHandler}>
             <div className="form-group">
                 <label htmlFor="inputFirstName" className="form-label font-weight-bold">
-                    First Name
+                    First Name:
                 </label>
                 <input 
                     name="first_name"
@@ -49,7 +49,7 @@ export default function ReservationForm({
             </div>
             <div className="form-group">
                 <label htmlFor="inputLastName" className="form-label font-weight-bold">
-                    Last Name
+                    Last Name:
                 </label>
                 <input 
                     name="last_name"
@@ -64,7 +64,7 @@ export default function ReservationForm({
             </div>
             <div className="form-group">
                 <label htmlFor="inputMobileNumber" className="form-label font-weight-bold">
-                    Mobile Number
+                    Mobile Number:
                 </label>
                 <input 
                     name="mobile_number"
@@ -79,7 +79,7 @@ export default function ReservationForm({
             </div>
             <div className="form-group">
                 <label htmlFor="inputParty" className="form-label font-weight-bold">
-                    Party Size
+                    Party Size:
                 </label>
                 <input 
                     name="people"
@@ -94,7 +94,7 @@ export default function ReservationForm({
             </div>
             <div className="form-group">
                 <label htmlFor="inputDate" className="form-label font-weight-bold">
-                    Date
+                    Date (MMDDYYYY):
                 </label>
                 <input 
                     name="reservation_date"
@@ -109,7 +109,7 @@ export default function ReservationForm({
             </div>
             <div className="form-group">
                 <label htmlFor="inputTime" className="form-label font-weight-bold">
-                    Time
+                    Time (HH:MM):
                 </label>
                 <input 
                     name="reservation_time"
