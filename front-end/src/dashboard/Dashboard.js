@@ -62,7 +62,7 @@ function Dashboard({ date }) {
 
   return (
     <main>
-      <h1 classname="header">Reservation System Dashboard</h1>
+      <h1 className="header">Reservation System Dashboard</h1>
       <div className="d-md-flex mb-3">
         <h4 className="mb-0">
           {reservations.length <1 && "No "}
