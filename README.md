@@ -49,25 +49,43 @@ Ready Rezzy is a restaurant reservation app built for restauranteurs to allow th
 
 1. **List Reservations:** `GET /reservations`
     - Requests all reservations
-    - 
 
 2. **Create a New Reservation:** `POST /reservations`
     - Posts a single JSON object
-    - 
 
-...
+3. **Read by ID:** `GET /reservations/reservation_id`
+    - Requests the reservation with the specified ID
+
+4. **Update a Reservation:** `PUT /reservations/reservation_id`
+    - Puts a single JSON object with the specified ID
+
+5. **Delete a Reservation:** `DELETE /reservations/reservation_id`
+    - Sends a delete request for the reservation with the specified ID
+
+6. **Update a Reservation Status:** `PUT /reservations/reservation_id/status`
+    - Puts a single JSON object with the specified ID and the desired status for the reservation to be updated to
+    - `status`: string equal to "booked", "seated", or "finished"
 
 ### **Endpoints for Tables**
 
 1. **List Tables:** `GET /tables`
-    - Requests all reservations
-    - 
+    - Requests all tables
 
 2. **Create a New Table:** `POST /tables`
     - Posts a single JSON object
-    - 
 
-...
+3. **Read by ID:** `GET /tables/table_id`
+    - Requests the table with the specified ID
+
+4. **Delete a Table:** `DELETE /tables/table_id`
+    - Sends a delete request for the table with the specified ID
+
+5. **Update Table by Adding a Reservation:** `PUT /tables/table_id/seat`
+    - Puts a single JSON object representing the desired reservation to be added to the table
+    - `reservation_id`: integer
+
+6. **Delete a Reservation from a Table:** `DELETE /tables/table_id/seat`
+    - Sends a delete request for the table with the specified `table_id` and `reservation_id`
 
 ## Technology Used
 
