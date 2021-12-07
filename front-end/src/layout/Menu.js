@@ -25,7 +25,7 @@ function Menu() {
           <li className="nav-item">
             <Link className="nav-link" to="/dashboard">
               <span className="oi oi-dashboard" />
-              &nbsp;Dashboard
+              &nbsp;RR Dashboard
             </Link>
           </li>
           <li className="nav-item">
