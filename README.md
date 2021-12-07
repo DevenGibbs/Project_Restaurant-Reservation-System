@@ -1,7 +1,7 @@
 # Periodic Tables Presents: **Ready Rezzy** 
-*A Simple, Easy-to-Use Restaurant Reservation System*
+A Simple, Easy-to-Use Restaurant Reservation System
 
-Also, my Thinkful Capstone Project
+*Also, my Thinkful Capstone Project*
 
 ## Try It Yourself:
 
@@ -13,28 +13,31 @@ Ready Rezzy is a restaurant reservation app built for restauranteurs to allow th
 
 ### - **Easily access existing reservations and tables on the Dashboard.**
 
-*Screenshot(s)*
+![dashboard](screenshots/dashboard.png)
 
 
 ### - **Ability to create and store new reservations and tables.**
    - New Reservation:
-   - New Table:
+   ![new-reservation](screenshots/new-reservation.png)
 
-*Screenshot(s)*
+   - New Table:
+   ![new-table](screenshots/new-table.png)
+
+
 
 ### - **Seat reservations at specific, available tables.**
 
-*Screenshot(s)*
+![seat-selection](screenshots/seat-selection.png)
 
 ### - **Seamlessly manage a reservation's status and/or table's availability throughout the course of business.**
    - Reservation Status: "booked", "seated" or "finished"
-   - Table Availability: "available" or "occupied"
+   - Table Availability: "free" or "occupied"
 
-*Screenshot(s)*
+![status-and-availability](screenshots/status-and-availability.png)
 
 ### - **Search for a reservation by the guest's phone number.**
 
-*Screenshot(s)*
+![search](screenshots/search.png)
 
 ## API Documentation
 

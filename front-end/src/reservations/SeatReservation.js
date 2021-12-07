@@ -66,7 +66,7 @@ export default function SeatReservation() {
     <div>
       <h1>Seat Reservation</h1>
       <div className="d-md-flex mb-3">
-        <h4>Assign a table to the reservation</h4>
+        <h4>Please assign a table to the reservation.</h4>
       </div>
       {error && <ErrorAlert error={error} />}
       <hr></hr>
