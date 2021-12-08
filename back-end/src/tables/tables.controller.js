@@ -12,10 +12,10 @@ const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
  * Validation for table creation
  */
 const VALID_PROPERTIES = [
-    "table_id", 
-    "table_name", 
-    "capacity", 
-    "reservation_id"
+  "table_id",
+  "table_name",
+  "capacity",
+  "reservation_id",
 ];
 
 function hasOnlyValidProperties(req, res, next) {
@@ -134,31 +134,31 @@ function tableIsNotOccupied(req, res, next) {
  * Validation for table availability (not occupied)
  */
 function tableIsOccupied(req, res, next) {
-    const { reservation_id } = res.locals.table;
-  
-    if (reservation_id) return next();
-  
-    next({
-      status: 400,
-      message: `Table is not occupied.`,
-    });
-  }
+  const { reservation_id } = res.locals.table;
+
+  if (reservation_id) return next();
+
+  next({
+    status: 400,
+    message: `Table is not occupied.`,
+  });
+}
 
 /**
  * Validation for table status ("seated")
  */
 function reservationStatusIsNotSeated(req, res, next) {
-    const { status } = res.locals.reservation;
-  
-    if (status === "seated") {
-      return next({
-        status: 400,
-        message: `Reservation status is ${status}.`,
-      });
-    }
-  
-    next();
+  const { status } = res.locals.reservation;
+
+  if (status === "seated") {
+    return next({
+      status: 400,
+      message: `Reservation status is ${status}.`,
+    });
   }
+
+  next();
+}
 
 /**
 
@@ -178,8 +178,8 @@ async function create(req, res) {
  * Read handler for tables resources
  */
 async function read(req, res) {
-    const data = res.locals.table;
-    res.json({ data: data });
+  const data = res.locals.table;
+  res.json({ data: data });
 }
 
 /**
@@ -234,7 +234,7 @@ async function deleteReservationId(req, res) {
  * Destroy handler for tables resources (table_id)
  */
 async function destroy(req, res) {
-  const { table_id } = res.locals.table
+  const { table_id } = res.locals.table;
   await tablesService.delete(table_id);
   res.sendStatus(204);
 }
@@ -243,8 +243,8 @@ async function destroy(req, res) {
  * List handler for tables resources
  */
 async function list(req, res, next) {
-    const data = await tablesService.list();
-    res.json({ data: data });
+  const data = await tablesService.list();
+  res.json({ data: data });
 }
 
 module.exports = {
@@ -273,9 +273,6 @@ module.exports = {
     asyncErrorBoundary(updateReservationStatusToFinished),
     asyncErrorBoundary(deleteReservationId),
   ],
-  delete: [
-    asyncErrorBoundary(tableExists),
-    asyncErrorBoundary(destroy)
-  ],
+  delete: [asyncErrorBoundary(tableExists), asyncErrorBoundary(destroy)],
   list: [asyncErrorBoundary(list)],
 };

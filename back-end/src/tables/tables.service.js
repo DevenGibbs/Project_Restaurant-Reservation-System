@@ -20,11 +20,11 @@ function readReservation(reservation_id) {
 }
 
 function update(updatedTable) {
-return knex("tables")
-  .select("*")
-  .where({ table_id: updatedTable.table_id })
-  .update(updatedTable, "*")
-  .then((updatedRecords) => updatedRecords[0])
+  return knex("tables")
+    .select("*")
+    .where({ table_id: updatedTable.table_id })
+    .update(updatedTable, "*")
+    .then((updatedRecords) => updatedRecords[0]);
 }
 
 function updateReservationStatus(updatedReservation) {
@@ -40,12 +40,12 @@ function deleteReservationId(updatedTable) {
     .select("*")
     .where({ table_id: updatedTable.table_id })
     .update(updatedTable, "*")
-    .then((updatedRecords) => updatedRecords[0])
-  }
+    .then((updatedRecords) => updatedRecords[0]);
+}
 
-  function destroy(table_id) {
-    return knex("tables").where({ table_id }).del();
-  }
+function destroy(table_id) {
+  return knex("tables").where({ table_id }).del();
+}
 
 module.exports = {
   create,
@@ -55,5 +55,5 @@ module.exports = {
   update,
   updateReservationStatus,
   deleteReservationId,
-  delete: destroy
+  delete: destroy,
 };

@@ -65,7 +65,7 @@ function Dashboard({ date }) {
       <h1 className="header">Ready Rezzy Dashboard</h1>
       <div className="d-md-flex mb-3">
         <h4 className="mb-0">
-          {reservations.length <1 && "No "}
+          {reservations.length < 1 && "No "}
           {`Reservations for`}&nbsp;
         </h4>
         <h4 className="fw-bold">{date}</h4>
@@ -73,13 +73,17 @@ function Dashboard({ date }) {
       <ErrorAlert error={reservationsError} />
       <TodayPrevNextButtons date={date} />
       <div>
-        <h4><u>Reservations:</u></h4>
+        <h4>
+          <u>Reservations:</u>
+        </h4>
       </div>
       <ReservationsList reservations={unfinishedReservations} />
       <br></br>
       <hr></hr>
       <div>
-        <h4><u>Tables:</u></h4>
+        <h4>
+          <u>Tables:</u>
+        </h4>
       </div>
       <ErrorAlert error={tablesError} />
       <TablesList tables={tables} />

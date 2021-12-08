@@ -190,14 +190,19 @@ function statusIsNotFinished(req, res, next) {
 function hasValidStatusRequest(req, res, next) {
   const { status } = req.body.data;
 
-  if (status === "booked" || status === "seated" || status === "finished" || status === "cancelled") {
+  if (
+    status === "booked" ||
+    status === "seated" ||
+    status === "finished" ||
+    status === "cancelled"
+  ) {
     return next();
   }
 
   next({
     status: 400,
     message: `The reservation status ${status} is invalid.`,
-  })
+  });
 }
 
 /**

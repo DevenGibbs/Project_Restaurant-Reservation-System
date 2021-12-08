@@ -5,7 +5,7 @@ import ErrorAlert from "../layout/ErrorAlert";
 
 export default function SeatReservation() {
   const { reservation_id } = useParams();
-  console.log(reservation_id)
+  console.log(reservation_id);
   const [reservation, setReservation] = useState({});
   const [tables, setTables] = useState([]);
   const [tableId, setTableId] = useState(0);
@@ -79,12 +79,12 @@ export default function SeatReservation() {
             onChange={(e) => setTableId(e.target.value)}
           >
             <option defaultValue>Choose a table</option>
-            {unassignedTables.map((table) =>
-                <option
-                  value={table.table_id}
-                  key={table.table_id}
-                >{`${table.table_name} - ${table.capacity}`}</option>
-            )}
+            {unassignedTables.map((table) => (
+              <option
+                value={table.table_id}
+                key={table.table_id}
+              >{`${table.table_name} - ${table.capacity}`}</option>
+            ))}
           </select>
         </div>
         <div className="col-md-6">

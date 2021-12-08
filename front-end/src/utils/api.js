@@ -7,7 +7,7 @@ import formatReservationTime from "./format-reservation-date";
 
 const API_BASE_URL =
   process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
-  // "https://dlg-reservations-back-end.herokuapp.com";
+// "https://dlg-reservations-back-end.herokuapp.com";
 
 /**
  * Defines the default headers for these functions to work with `json-server`
@@ -71,14 +71,14 @@ export async function listReservations(params, signal) {
 
 /**
  * Retrieves the reservation with the associated 'reservation_id'
- * @param reservation_id 
+ * @param reservation_id
  * the 'reservation_id' property matching the desired reservation
- * @param signal 
- * optional AbortController.signal 
+ * @param signal
+ * optional AbortController.signal
  * @returns {Promise<Error>}
  * a promise that resolves to a possible error, if the reservation does not exist.
  */
- export async function readReservation(reservation_id, signal) {
+export async function readReservation(reservation_id, signal) {
   const url = `${API_BASE_URL}/reservations/${reservation_id}`;
   return await fetchJson(url, { signal }, {});
 }
@@ -107,9 +107,9 @@ export async function createReservation(reservation, signal) {
 
 /**
  * Updates the status of an existing reservation
- * @param updatedReservation 
+ * @param updatedReservation
  * the reservation to update, which must have a 'status' property
- * @param signal 
+ * @param signal
  * optional AbortController.signal
  * @returns {Promise<Error>}
  * a promise that resolves to the updated status of a reservations
@@ -132,14 +132,14 @@ export async function updateReservationStatus(updatedReservation, signal) {
  */
 export async function listTables(signal) {
   const url = new URL(`${API_BASE_URL}/tables`);
-  return await fetchJson(url, { headers, signal }, [])
+  return await fetchJson(url, { headers, signal }, []);
 }
 
 /**
  * Deletes the 'reservation_id' preoperty associated with a specific 'table_id'
- * @param table_id 
+ * @param table_id
  * the id of the table to update
- * @param signal 
+ * @param signal
  * optional AbortController.signal
  * @returns {Promise<Error>}
  * a promise that resolves to an object with a null 'reservation_id'
@@ -152,9 +152,9 @@ export async function deleteTableReservation(table_id, signal) {
 
 /**
  * Updates an existing reservation
- * @param updatedReservation 
+ * @param updatedReservation
  * the reservation to save, which must have a 'reservation_id' property
- * @param signal 
+ * @param signal
  * optional AbortController.signal
  * @returns {Promise<Error>}
  * a promise that resolves to the updated reservation
@@ -181,7 +181,7 @@ export async function updateReservation(updatedReservation, signal) {
  * a promise that resolves the saved table.
  * Adds a 'table_id'  property
  */
- export async function createTable(table, signal) {
+export async function createTable(table, signal) {
   const url = `${API_BASE_URL}/tables`;
   const options = {
     method: "POST",
@@ -194,9 +194,9 @@ export async function updateReservation(updatedReservation, signal) {
 
 /**
  * Updates an existing table
- * @param updatedTable 
+ * @param updatedTable
  *  the table to save, which must have a 'table_id' property
- * @param signal 
+ * @param signal
  *  optional AbortController.signal
  * @returns {Promise<Error>}
  * a pomise that resolves to the updated table and updates reservation 'status' to be "seated"
