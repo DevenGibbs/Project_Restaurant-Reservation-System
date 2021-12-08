@@ -1,13 +1,15 @@
 # Periodic Tables Presents: **Ready Rezzy** 
-A Simple, Easy-to-Use Restaurant Reservation System
+### A Simple, Easy-to-Use, Restaurant Reservation System
 
-*Also, my Thinkful Capstone Project*
+### *Also, my Thinkful Capstone Project*
+
 
 ## Try It Yourself:
 
 [ReadyRezzy](https://dlg-reservations-front-end.herokuapp.com/dashboard)
 
 Ready Rezzy is a restaurant reservation app built for restauranteurs to allow them to easily create, manage, and track both reservations and tables for their places of business. Restaurant personnel can use the system and information made available to them in this app to manage day-to-day operations and support customers when they call to inquire about reservations. 
+
 
 ## Key Features
 
@@ -39,6 +41,7 @@ Ready Rezzy is a restaurant reservation app built for restauranteurs to allow th
 
 ![search](screenshots/search.png)
 
+
 ## API Documentation
 
 ### **In alignment with REST best practices:**
@@ -47,60 +50,43 @@ Ready Rezzy is a restaurant reservation app built for restauranteurs to allow th
 
 ### **Endpoints for Reservations**
 
-1. **List Reservations:** `GET /reservations`
-    - Requests all reservations
+| API path                               | Method(s)                                                                                                        |
+| -------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `/reservations`                          | **GET**: List all reservations.<br/> **POST**: Create a new reservation. |
+| `/reservations/?date='YYYY-MM-DD'`       | **GET**: List all reservations by date. |
+| `/reservations/:reservation_id`          | **GET**: Read a single reservation by 'reservation_id'.<br/> **PUT**: Update a reservation by 'reservation_id'.<br/> **DELETE**: Delete a reservation by 'reservation_id'. |
+| `/reservations/:reservation_id/status`   | **PUT**: Update a reservation's status. Options being "booked", "seated", or "finished". |
 
-2. **Create a New Reservation:** `POST /reservations`
-    - Posts a single JSON object
-
-3. **Read by ID:** `GET /reservations/reservation_id`
-    - Requests the reservation with the specified ID
-
-4. **Update a Reservation:** `PUT /reservations/reservation_id`
-    - Puts a single JSON object with the specified ID
-
-5. **Delete a Reservation:** `DELETE /reservations/reservation_id`
-    - Sends a delete request for the reservation with the specified ID
-
-6. **Update a Reservation Status:** `PUT /reservations/reservation_id/status`
-    - Puts a single JSON object with the specified ID and the desired status for the reservation to be updated to
-    - `status`: string equal to "booked", "seated", or "finished"
 
 ### **Endpoints for Tables**
 
-1. **List Tables:** `GET /tables`
-    - Requests all tables
+| API path                               | Method(s)                                                                                                        |
+| -------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `/tables`                          | **GET**: List all tables.<br/> **POST**: Create a new table. |
+| `/tables/:table_id`          | **GET**: Read a single table by 'table_id'.<br/> **DELETE**: Delete a table by 'table_id'. |
+| `/tables/:table_id/seat`   | **PUT**: Update a table's status to "occupied".<br/> **DELETE**: Update a table's status to "free". |
 
-2. **Create a New Table:** `POST /tables`
-    - Posts a single JSON object
-
-3. **Read by ID:** `GET /tables/table_id`
-    - Requests the table with the specified ID
-
-4. **Delete a Table:** `DELETE /tables/table_id`
-    - Sends a delete request for the table with the specified ID
-
-5. **Update Table by Adding a Reservation:** `PUT /tables/table_id/seat`
-    - Puts a single JSON object representing the desired reservation to be added to the table
-    - `reservation_id`: integer
-
-6. **Delete a Reservation from a Table:** `DELETE /tables/table_id/seat`
-    - Sends a delete request for the table with the specified `table_id` and `reservation_id`
 
 ## Technology Used
 
-| Location | Tool(s)                                                      
+| Tier | Tool(s)                                                      
 | ---------------- | ---------------------------------------------------------------- |
-| front-end   | React, HTML, CSS, Bootstrap 5  |
-| back-end    | Node.js, Express, Knex |
+| front-end   | JavaScript, React, HTML, CSS, Bootstrap  |
+| back-end    | JavaScript, Node.js, Express, Knex |
 | database    | PostgreSQL |
-| overall     | Javascript, Heroku, Github |
+| other       | Heroku, Github |
+
 
 ## Installation Instructions
 
 1. Fork and clone this repository.
+1. Run `cd .\back-end\` to navigate to the back-end folder structure
+1. Run `cp .env.sample .env`
+1. Copy and paste your database URLs into the back-end/.env file
+1. Run `cd ../` to navigate back to the root folder structure
 1. Run `npm install` to install project dependencies.
-1. Run `npm run start` to start the client & server.
+1. Run `npm run start` to start the application (back-end and front-end are run concurrently with this command).
+
 
 ## Special Thanks
 * Thinkful, for the opportunity and support.
